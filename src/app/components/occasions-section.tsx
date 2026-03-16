@@ -1,52 +1,13 @@
 import { motion } from "motion/react";
-import { Cake, Gift, GraduationCap, Heart, Leaf, Sparkles } from "lucide-react";
+import type { AppContent } from "../content";
 
-const occasions = [
-  {
-    id: 1,
-    icon: Heart,
-    title: "Romantic",
-    description: "Blush tones, ribbons, soft drama.",
-    color: "#F7D9E3"
-  },
-  {
-    id: 2,
-    icon: Sparkles,
-    title: "Weddings",
-    description: "Bouquets, tables, ceremony corners.",
-    color: "#FFE5D9"
-  },
-  {
-    id: 3,
-    icon: Cake,
-    title: "Birthdays",
-    description: "Happy color stories with gift wrap.",
-    color: "#E6D9F2"
-  },
-  {
-    id: 4,
-    icon: GraduationCap,
-    title: "Celebrations",
-    description: "Elegant florals for proud milestones.",
-    color: "#A8C3A1"
-  },
-  {
-    id: 5,
-    icon: Gift,
-    title: "Thank You",
-    description: "Polished gestures with note cards.",
-    color: "#FFE5D9"
-  },
-  {
-    id: 6,
-    icon: Leaf,
-    title: "Sympathy",
-    description: "Quiet, respectful, understated design.",
-    color: "#A8C3A1"
-  }
-];
+type OccasionsSectionProps = {
+  content: AppContent;
+};
 
-export function OccasionsSection() {
+export function OccasionsSection({ content }: OccasionsSectionProps) {
+  const { occasions } = content;
+
   return (
     <section className="px-4 py-24 md:px-8">
       <div className="mx-auto max-w-7xl">
@@ -57,17 +18,17 @@ export function OccasionsSection() {
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           className="mb-14 max-w-2xl"
         >
-          <p className="text-sm uppercase tracking-[0.28em] text-[#8d7982] dark:text-[#b59faa]">Occasion Styling</p>
+          <p className="text-sm uppercase tracking-[0.28em] text-[#8d7982] dark:text-[#b59faa]">{occasions.eyebrow}</p>
           <h2 className="mt-4 text-5xl leading-none text-[#2D2D2D] dark:text-[#f6edf0] md:text-6xl">
-            Designed around the feeling, not just the event.
+            {occasions.title}
           </h2>
           <p className="mt-4 max-w-2xl text-lg text-[#2D2D2D]/70 dark:text-[#ccbfc7]">
-            Different moments ask for different floral language. These collections keep the mood clear and the design intentional.
+            {occasions.description}
           </p>
         </motion.div>
 
         <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-          {occasions.map((occasion, index) => {
+          {occasions.items.map((occasion, index) => {
             const Icon = occasion.icon;
             return (
               <motion.div

@@ -1,7 +1,14 @@
 import { motion } from "motion/react";
 import { Clock3, MapPin, Navigation, Phone } from "lucide-react";
+import type { AppContent } from "../content";
 
-export function LocationSection() {
+type LocationSectionProps = {
+  content: AppContent;
+};
+
+export function LocationSection({ content }: LocationSectionProps) {
+  const { location } = content;
+
   return (
     <section id="visit" className="px-4 py-24 md:px-8">
       <div
@@ -23,12 +30,12 @@ export function LocationSection() {
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           className="mb-14 max-w-2xl"
         >
-          <p className="text-sm uppercase tracking-[0.28em] text-[#8d7982] dark:text-[#b59faa]">Visit The Shop</p>
+          <p className="text-sm uppercase tracking-[0.28em] text-[#8d7982] dark:text-[#b59faa]">{location.eyebrow}</p>
           <h2 className="mt-4 mb-4 text-4xl leading-none text-[#2D2D2D] dark:text-[#f6edf0] sm:text-5xl md:text-6xl">
-            Stop by for stems, gifts, or a custom bouquet consultation.
+            {location.title}
           </h2>
           <p className="text-lg text-[#2D2D2D]/70 dark:text-[#ccbfc7]">
-            The contact area now closes the page with a calmer, more premium invitation instead of a generic map block.
+            {location.description}
           </p>
         </motion.div>
 
@@ -46,11 +53,11 @@ export function LocationSection() {
                   <MapPin className="h-6 w-6 text-[#2D2D2D]" />
                 </div>
                 <h3 className="text-xl text-[#2D2D2D] dark:text-[#f6edf0] sm:text-2xl">
-                  Cvjećara Vjetrenjača – Margareta
+                  {location.name}
                 </h3>
               </div>
               <p className="text-lg text-[#2D2D2D]/70 dark:text-[#cabdc5]">
-                Sarajevo, Bosnia and Herzegovina
+                {location.city}
               </p>
             </div>
 
@@ -60,7 +67,7 @@ export function LocationSection() {
                   <Phone className="h-5 w-5 text-white" />
                 </div>
                 <div>
-                  <h4 className="mb-1 text-lg text-[#2D2D2D] dark:text-[#f6edf0]">Contact</h4>
+                  <h4 className="mb-1 text-lg text-[#2D2D2D] dark:text-[#f6edf0]">{location.contactTitle}</h4>
                   <p className="text-[#2D2D2D]/70 dark:text-[#cabdc5]">+387 XX XXX XXX</p>
                   <p className="text-[#2D2D2D]/70 dark:text-[#cabdc5]">info@vjetrenjaca.ba</p>
                 </div>
@@ -71,10 +78,10 @@ export function LocationSection() {
                   <Clock3 className="h-5 w-5 text-[#2D2D2D]" />
                 </div>
                 <div>
-                  <h4 className="mb-1 text-lg text-[#2D2D2D] dark:text-[#f6edf0]">Opening Hours</h4>
-                  <p className="text-[#2D2D2D]/70 dark:text-[#cabdc5]">Mon - Fri: 8:00 - 20:00</p>
-                  <p className="text-[#2D2D2D]/70 dark:text-[#cabdc5]">Sat: 9:00 - 18:00</p>
-                  <p className="text-[#2D2D2D]/70 dark:text-[#cabdc5]">Sun: 10:00 - 16:00</p>
+                  <h4 className="mb-1 text-lg text-[#2D2D2D] dark:text-[#f6edf0]">{location.openingHoursTitle}</h4>
+                  {location.hours.map((line) => (
+                    <p key={line} className="text-[#2D2D2D]/70 dark:text-[#cabdc5]">{line}</p>
+                  ))}
                 </div>
               </div>
             </div>
@@ -87,7 +94,7 @@ export function LocationSection() {
                 className="flex items-center gap-2 rounded-full bg-[#A8C3A1] px-6 py-3 text-white shadow-lg transition-shadow hover:shadow-xl dark:bg-[#d6e7ce] dark:text-[#1c171c]"
               >
                 <Navigation className="h-4 w-4" />
-                Get Directions
+                {location.directions}
               </motion.a>
               <motion.a
                 whileHover={{ scale: 1.015, y: -1 }}
@@ -96,7 +103,7 @@ export function LocationSection() {
                 className="flex items-center gap-2 rounded-full bg-[#F7D9E3] px-6 py-3 text-[#2D2D2D] shadow-lg transition-shadow hover:shadow-xl dark:bg-[#352932] dark:text-[#f6edf0]"
               >
                 <Phone className="h-4 w-4" />
-                Call Shop
+                {location.call}
               </motion.a>
             </div>
           </motion.div>
@@ -112,23 +119,23 @@ export function LocationSection() {
             <div className="absolute -left-10 bottom-0 h-48 w-48 rounded-full bg-[#dcead7]/60 blur-3xl dark:bg-[#4b6048]/30" />
             <div className="relative flex h-full min-h-[420px] flex-col justify-between rounded-[1.75rem] border border-white/70 bg-white/65 p-6 backdrop-blur dark:border-white/10 dark:bg-white/6 sm:min-h-[500px] sm:p-8">
               <div>
-                <p className="text-sm uppercase tracking-[0.25em] text-[#8d7982] dark:text-[#b59faa]">In-shop experience</p>
+                <p className="text-sm uppercase tracking-[0.25em] text-[#8d7982] dark:text-[#b59faa]">{location.experienceEyebrow}</p>
                 <h3 className="mt-4 text-3xl leading-none text-[#2d2d2d] dark:text-[#f6edf0] sm:text-4xl">
-                  Walk in for quick picks or book a floral consult.
+                  {location.experienceTitle}
                 </h3>
                 <p className="mt-4 max-w-md text-sm leading-7 text-[#675f64] dark:text-[#cabdc5]">
-                  Ideal for wedding styling, event florals, or custom gift bouquets when you want to review palette and mood in person.
+                  {location.experienceDescription}
                 </p>
               </div>
 
               <div className="grid gap-4 sm:grid-cols-2">
                 <div className="rounded-[1.5rem] bg-[#fff4ef] p-5 dark:bg-[#2a2329]">
-                  <p className="text-sm uppercase tracking-[0.24em] text-[#9a818c] dark:text-[#bba6b0]">Quick stop</p>
-                  <p className="mt-3 text-2xl text-[#2d2d2d] dark:text-[#f6edf0]">Fresh wrap counter</p>
+                  <p className="text-sm uppercase tracking-[0.24em] text-[#9a818c] dark:text-[#bba6b0]">{location.quickStopEyebrow}</p>
+                  <p className="mt-3 text-2xl text-[#2d2d2d] dark:text-[#f6edf0]">{location.quickStopTitle}</p>
                 </div>
                 <div className="rounded-[1.5rem] bg-[#edf5ea] p-5 dark:bg-[#233026]">
-                  <p className="text-sm uppercase tracking-[0.24em] text-[#7f8f7d] dark:text-[#b8cfb1]">By request</p>
-                  <p className="mt-3 text-2xl text-[#2d2d2d] dark:text-[#f6edf0]">Event and bridal planning</p>
+                  <p className="text-sm uppercase tracking-[0.24em] text-[#7f8f7d] dark:text-[#b8cfb1]">{location.byRequestEyebrow}</p>
+                  <p className="mt-3 text-2xl text-[#2d2d2d] dark:text-[#f6edf0]">{location.byRequestTitle}</p>
                 </div>
               </div>
             </div>

@@ -1,29 +1,14 @@
 import { motion } from "motion/react";
-import { ArrowRight, Flower2, Leaf, PackageOpen, Sparkles } from "lucide-react";
+import { ArrowRight, Sparkles } from "lucide-react";
+import type { AppContent } from "../content";
 
-const recipeSteps = [
-  {
-    title: "Choose the mood",
-    description: "Soft blush, wild garden, clean white, or sunset tones."
-  },
-  {
-    title: "Pick your stems",
-    description: "Peonies, roses, tulips, ranunculus, eucalyptus, and seasonal accents."
-  },
-  {
-    title: "Finish the wrapping",
-    description: "Ribbon, silk paper, note card, and vase styling for the final touch."
-  }
-];
+type BouquetDesignerSectionProps = {
+  content: AppContent;
+};
 
-const bouquetOptions = [
-  { label: "Cloud Roses", note: "Romantic volume", icon: Flower2 },
-  { label: "Garden Tulips", note: "Fresh and airy", icon: Sparkles },
-  { label: "Olive Eucalyptus", note: "Soft green texture", icon: Leaf },
-  { label: "Keepsake Box", note: "Gift-ready finish", icon: PackageOpen }
-];
+export function BouquetDesignerSection({ content }: BouquetDesignerSectionProps) {
+  const { designer } = content;
 
-export function BouquetDesignerSection() {
   return (
     <section id="design-your-bouquet" className="relative px-4 py-24 md:px-8">
       <div className="mx-auto max-w-7xl">
@@ -39,17 +24,17 @@ export function BouquetDesignerSection() {
             <div className="relative">
               <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#e8d5db] bg-white/70 px-3 py-2 text-[10px] uppercase tracking-[0.22em] text-[#7b6871] dark:border-white/10 dark:bg-white/6 dark:text-[#dcc8d1] sm:px-4 sm:text-xs sm:tracking-[0.28em]">
                 <Sparkles className="h-4 w-4" />
-                Design Your Own Bouquet
+                {designer.badge}
               </span>
               <h2 className="mt-6 max-w-xl text-4xl leading-none text-[#2d2d2d] dark:text-[#f6edf0] sm:text-5xl md:text-6xl">
-                Build a bouquet that feels made for one exact moment.
+                {designer.title}
               </h2>
               <p className="mt-5 max-w-2xl text-base leading-7 text-[#5f5960] dark:text-[#cabec5] md:text-lg">
-                This section invites customers to co-create. Choose color mood, flower style, wrapping, and special extras before we tie it all together by hand.
+                {designer.description}
               </p>
 
               <div className="mt-10 grid gap-4 md:grid-cols-3">
-                {recipeSteps.map((step, index) => (
+                {designer.steps.map((step, index) => (
                   <div
                     key={step.title}
                     className="rounded-[1.75rem] border border-[#ead9de] bg-white/80 p-5 dark:border-white/10 dark:bg-white/6"
@@ -64,7 +49,7 @@ export function BouquetDesignerSection() {
               </div>
 
               <div className="mt-8 flex flex-wrap gap-3">
-                {["Blush & cream", "Wild meadow", "Luxury white", "Sunny pastel", "Ribbon note"].map((tag) => (
+                {designer.tags.map((tag) => (
                   <span
                     key={tag}
                     className="rounded-full bg-[#f8e8ee] px-4 py-2 text-sm text-[#755d69] dark:bg-[#352932] dark:text-[#ead9e0]"
@@ -84,9 +69,9 @@ export function BouquetDesignerSection() {
             className="grid gap-6"
           >
             <div className="rounded-[2rem] border border-[#e9d8dd] bg-[#fff4ef] p-5 shadow-[0_24px_80px_rgba(121,94,108,0.12)] dark:border-white/10 dark:bg-[#241f25] sm:p-7">
-              <p className="text-sm uppercase tracking-[0.25em] text-[#8d727e] dark:text-[#bfaab4]">Suggested recipe</p>
+              <p className="text-sm uppercase tracking-[0.25em] text-[#8d727e] dark:text-[#bfaab4]">{designer.recipeEyebrow}</p>
               <div className="mt-5 space-y-4">
-                {bouquetOptions.map((option) => {
+                {designer.options.map((option) => {
                   const Icon = option.icon;
                   return (
                     <div
@@ -102,7 +87,7 @@ export function BouquetDesignerSection() {
                           <p className="text-sm text-[#6c6469] dark:text-[#cbbec5]">{option.note}</p>
                         </div>
                       </div>
-                      <span className="text-sm text-[#8f7f87] dark:text-[#bda8b2]">Included</span>
+                      <span className="text-sm text-[#8f7f87] dark:text-[#bda8b2]">{designer.included}</span>
                     </div>
                   );
                 })}
@@ -113,15 +98,15 @@ export function BouquetDesignerSection() {
               <div className="absolute -right-14 -top-10 h-40 w-40 rounded-full bg-[#f7d9e3]/20 blur-2xl dark:bg-[#ffffff]/45" />
               <div className="absolute -bottom-10 -left-8 h-36 w-36 rounded-full bg-[#a8c3a1]/20 blur-2xl dark:bg-[#d6e7ce]/40" />
               <div className="relative">
-                <p className="text-sm uppercase tracking-[0.25em] text-white/60 dark:text-[#655761]">From sketch to bouquet</p>
+                <p className="text-sm uppercase tracking-[0.25em] text-white/60 dark:text-[#655761]">{designer.priceEyebrow}</p>
                 <p className="mt-4 text-3xl leading-none sm:text-4xl" style={{ fontFamily: "Cormorant Garamond, serif" }}>
-                  75 KM
+                  {designer.price}
                 </p>
                 <p className="mt-3 max-w-sm text-sm leading-6 text-white/75 dark:text-[#564b52]">
-                  Base price for a medium custom bouquet with premium wrapping and a handwritten card.
+                  {designer.priceDescription}
                 </p>
                 <button className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-[#2d2d2d] transition-transform hover:scale-[1.02] dark:bg-[#1f1a20] dark:text-[#f6edf0]">
-                  Start Your Bouquet
+                  {designer.cta}
                   <ArrowRight className="h-4 w-4" />
                 </button>
               </div>

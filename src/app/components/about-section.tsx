@@ -1,7 +1,14 @@
 import { motion } from "motion/react";
-import { Heart, Leaf, Sparkles } from "lucide-react";
+import { Heart } from "lucide-react";
+import type { AppContent } from "../content";
 
-export function AboutSection() {
+type AboutSectionProps = {
+  content: AppContent;
+};
+
+export function AboutSection({ content }: AboutSectionProps) {
+  const { about } = content;
+
   return (
     <section className="relative overflow-hidden px-4 py-24 md:px-8">
       <div
@@ -29,7 +36,7 @@ export function AboutSection() {
             <div className="relative overflow-hidden rounded-[2rem] border border-white/70 p-2 shadow-[0_24px_80px_rgba(121,94,108,0.12)] backdrop-blur dark:border-white/10 dark:bg-white/6 sm:rounded-[2.5rem] sm:p-3">
               <img
                 src="https://images.unsplash.com/photo-1719586901803-d3a5ef35b28f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxiZWF1dGlmdWwlMjBmbG93ZXIlMjBzaG9wJTIwaW50ZXJpb3J8ZW58MXx8fHwxNzczNjUwMjMwfDA&ixlib=rb-4.1.0&q=80&w=1080"
-                alt="Flower arrangement"
+                alt={about.imageAlt}
                 className="h-[360px] w-full rounded-[1.6rem] object-cover sm:h-[460px] sm:rounded-[2rem] lg:h-[560px]"
               />
               <div className="absolute left-4 top-4 rounded-[1.2rem] bg-white/90 p-3 shadow-lg backdrop-blur dark:bg-[#221d22]/90 sm:left-8 sm:top-8 sm:rounded-[1.5rem] sm:p-4">
@@ -42,10 +49,10 @@ export function AboutSection() {
               animate={{ y: [0, -4, 0] }}
               transition={{ duration: 6.2, repeat: Infinity, ease: [0.4, 0, 0.2, 1] }}
             >
-              <p className="text-sm uppercase tracking-[0.24em] text-[#98838d] dark:text-[#b79faa]">In the shop</p>
-              <p className="mt-2 text-3xl text-[#2d2d2d] dark:text-[#f6edf0]">Daily curation</p>
+              <p className="text-sm uppercase tracking-[0.24em] text-[#98838d] dark:text-[#b79faa]">{about.inShopEyebrow}</p>
+              <p className="mt-2 text-3xl text-[#2d2d2d] dark:text-[#f6edf0]">{about.inShopTitle}</p>
               <p className="mt-2 text-sm leading-6 text-[#625c61] dark:text-[#ccbfc7]">
-                We style the front table with whatever looks freshest and most alive that morning.
+                {about.inShopDescription}
               </p>
             </motion.div>
           </motion.div>
@@ -57,28 +64,23 @@ export function AboutSection() {
             transition={{ duration: 0.8, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
           >
             <div className="mb-6 inline-block rounded-full bg-[#f7d9e3] px-4 py-2 dark:bg-[#352932]">
-              <span className="text-sm tracking-[0.2em] text-[#2D2D2D] dark:text-[#f6edf0]">OUR STORY</span>
+              <span className="text-sm tracking-[0.2em] text-[#2D2D2D] dark:text-[#f6edf0]">{about.eyebrow}</span>
             </div>
 
             <h2 className="mb-6 text-4xl leading-none text-[#2D2D2D] dark:text-[#f6edf0] sm:text-5xl md:text-6xl">
-              A neighborhood florist with a softer point of view.
+              {about.title}
             </h2>
 
             <p className="mb-6 text-lg leading-relaxed text-[#2D2D2D]/80 dark:text-[#ccbfc7]">
-              Vjetrenjača is built around gentle color, fresh texture, and arrangements that feel considered rather than mass-produced.
+              {about.paragraphOne}
             </p>
 
             <p className="mb-8 text-lg leading-relaxed text-[#2D2D2D]/80 dark:text-[#ccbfc7]">
-              We prepare bouquets for everyday gifting, romantic gestures, weddings, and events, but the heart of the shop is still the same:
-              flowers chosen carefully, wrapped beautifully, and handed over with intention.
+              {about.paragraphTwo}
             </p>
 
             <div className="grid gap-4 sm:grid-cols-3">
-              {[
-                { icon: Heart, title: "Hand arranged", text: "Each bouquet finished by florist hand." },
-                { icon: Leaf, title: "Season led", text: "Best stems change with the week." },
-                { icon: Sparkles, title: "Gift ready", text: "Cards, wrapping and vase add-ons available." }
-              ].map((item) => {
+              {about.pillars.map((item) => {
                 const Icon = item.icon;
                 return (
                   <div key={item.title} className="rounded-[1.5rem] border border-white/70 bg-white/65 p-5 backdrop-blur dark:border-white/10 dark:bg-white/6">
