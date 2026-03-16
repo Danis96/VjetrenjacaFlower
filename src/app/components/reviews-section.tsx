@@ -1,35 +1,14 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
+import type { AppContent } from "../content";
 
-const reviews = [
-  {
-    id: 1,
-    name: "Amira Hadžić",
-    text: "Najljepši buketi u Sarajevu! Uvijek sve svježe i prelijepo uređeno. Posebno preporučujem za vjenčanja.",
-    rating: 5
-  },
-  {
-    id: 2,
-    name: "Selma Kovač",
-    text: "Profesionalna usluga i predivno cvijeće. Vjetrenjača je moj prvi izbor za sve prilike!",
-    rating: 5
-  },
-  {
-    id: 3,
-    name: "Emir Softić",
-    text: "Naručio sam buket za godišnjicu braka - supruga je bila oduševljena! Hvala vam!",
-    rating: 5
-  },
-  {
-    id: 4,
-    name: "Lejla Begić",
-    text: "Najbolja cvjećara u gradu! Margareta uvijek zna šta preporučiti za svaku priliku.",
-    rating: 5
-  }
-];
+type ReviewsSectionProps = {
+  content: AppContent;
+};
 
-export function ReviewsSection() {
+export function ReviewsSection({ content }: ReviewsSectionProps) {
+  const { reviews } = content;
   const [currentIndex, setCurrentIndex] = useState(0);
 
   const next = () => {
@@ -53,12 +32,12 @@ export function ReviewsSection() {
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
           className="text-center mb-16"
         >
-          <p className="text-sm uppercase tracking-[0.28em] text-[#8d7982] dark:text-[#b59faa]">Reviews</p>
+          <p className="text-sm uppercase tracking-[0.28em] text-[#8d7982] dark:text-[#b59faa]">{reviews.eyebrow}</p>
           <h2 className="text-4xl sm:text-5xl md:text-6xl mb-4 leading-none text-[#2D2D2D] dark:text-[#f6edf0]">
-            The shop is remembered for how the flowers feel.
+            {reviews.title}
           </h2>
           <p className="text-lg text-[#2D2D2D]/70 dark:text-[#ccbfc7]">
-            Real customer notes, kept in a calmer editorial layout.
+            {reviews.description}
           </p>
         </motion.div>
 
@@ -75,16 +54,16 @@ export function ReviewsSection() {
               <Quote className="w-12 h-12 text-[#F7D9E3] dark:text-[#caa6b8] mb-6" />
               
               <p className="text-lg text-[#2D2D2D] dark:text-[#f6edf0] mb-8 leading-relaxed italic sm:text-xl md:text-2xl">
-                "{reviews[currentIndex].text}"
+                "{reviews.items[currentIndex].text}"
               </p>
 
               <div className="flex items-center gap-4">
                 <div className="flex-1">
                   <h4 className="text-lg text-[#2D2D2D] dark:text-[#f6edf0] mb-2">
-                    {reviews[currentIndex].name}
+                    {reviews.items[currentIndex].name}
                   </h4>
                   <div className="flex gap-1">
-                    {[...Array(reviews[currentIndex].rating)].map((_, i) => (
+                    {[...Array(reviews.items[currentIndex].rating)].map((_, i) => (
                       <Star key={i} className="w-5 h-5 text-[#FFE5D9] fill-[#FFE5D9]" />
                     ))}
                   </div>
@@ -99,16 +78,18 @@ export function ReviewsSection() {
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.98 }}
               onClick={prev}
+              aria-label={reviews.previous}
               className="w-12 h-12 bg-[#A8C3A1] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
             >
               <ChevronLeft className="w-6 h-6" />
             </motion.button>
             
             <div className="flex items-center gap-2">
-              {reviews.map((_, index) => (
+              {reviews.items.map((_, index) => (
                 <button
                   key={index}
                   onClick={() => setCurrentIndex(index)}
+                  aria-label={`${reviews.goTo} ${index + 1}`}
                   className={`w-2 h-2 rounded-full transition-all duration-300 ${
                     index === currentIndex 
                       ? 'w-8 bg-[#A8C3A1]' 
@@ -122,6 +103,7 @@ export function ReviewsSection() {
               whileHover={{ scale: 1.04, y: -1 }}
               whileTap={{ scale: 0.98 }}
               onClick={next}
+              aria-label={reviews.next}
               className="w-12 h-12 bg-[#A8C3A1] text-white rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-shadow"
             >
               <ChevronRight className="w-6 h-6" />

@@ -1,7 +1,14 @@
 import { motion } from "motion/react";
 import { ArrowRight, Flower2, HeartHandshake, Sparkles } from "lucide-react";
+import type { AppContent } from "../content";
 
-export function HeroSection() {
+type HeroSectionProps = {
+  content: AppContent;
+};
+
+export function HeroSection({ content }: HeroSectionProps) {
+  const { hero, nav } = content;
+
   return (
     <section id="home" className="relative overflow-hidden px-4 pb-16 pt-6 md:px-8 md:pb-24">
       <div
@@ -47,14 +54,14 @@ export function HeroSection() {
               <Flower2 className="h-5 w-5" />
             </div>
             <div>
-              <p className="text-xs uppercase tracking-[0.24em] text-[#8f7a84] dark:text-[#b59eaa]">Sarajevo Flower House</p>
-              <p className="text-base text-[#2d2d2d] dark:text-[#f6edf0] sm:text-lg">Cvjećara Vjetrenjača Margareta</p>
+              <p className="text-xs uppercase tracking-[0.24em] text-[#8f7a84] dark:text-[#b59eaa]">{hero.eyebrow}</p>
+              <p className="text-base text-[#2d2d2d] dark:text-[#f6edf0] sm:text-lg">{hero.brand}</p>
             </div>
           </div>
           <nav className="flex flex-wrap items-center gap-2 text-sm text-[#675f64] dark:text-[#dbcfd6]">
-            <a href="#collections" className="rounded-full px-3 py-2 hover:bg-[#fff1f0] dark:hover:bg-white/10 sm:px-4">Bouquets</a>
-            <a href="#design-your-bouquet" className="rounded-full px-3 py-2 hover:bg-[#fff1f0] dark:hover:bg-white/10 sm:px-4">Custom Design</a>
-            <a href="#visit" className="rounded-full px-3 py-2 hover:bg-[#fff1f0] dark:hover:bg-white/10 sm:px-4">Visit</a>
+            <a href="#collections" className="rounded-full px-3 py-2 hover:bg-[#fff1f0] dark:hover:bg-white/10 sm:px-4">{nav.bouquets}</a>
+            <a href="#design-your-bouquet" className="rounded-full px-3 py-2 hover:bg-[#fff1f0] dark:hover:bg-white/10 sm:px-4">{nav.customDesign}</a>
+            <a href="#visit" className="rounded-full px-3 py-2 hover:bg-[#fff1f0] dark:hover:bg-white/10 sm:px-4">{nav.visit}</a>
           </nav>
         </div>
 
@@ -67,35 +74,30 @@ export function HeroSection() {
           >
             <span className="inline-flex max-w-full items-center gap-2 rounded-full border border-[#ead8de] bg-white/70 px-3 py-2 text-[10px] uppercase tracking-[0.24em] text-[#816c78] dark:border-white/10 dark:bg-white/6 dark:text-[#d7c1cb] sm:px-4 sm:text-xs sm:tracking-[0.3em]">
               <Sparkles className="h-4 w-4 text-[#a8c3a1] dark:text-[#d6e7ce]" />
-              Soft florals, thoughtful gifting
+              {hero.badge}
             </span>
             <h1 className="mt-6 max-w-3xl text-[3.2rem] leading-[0.92] text-[#2d2d2d] dark:text-[#f6edf0] sm:text-[4.2rem] md:text-[5.4rem] lg:text-[7rem]">
-              Flowers arranged like a love letter.
+              {hero.title}
             </h1>
             <p className="mt-6 max-w-xl text-base leading-7 text-[#60585e] dark:text-[#ccbfc7] md:text-lg">
-              A softer, more romantic flower experience for birthdays, weddings, thank-you gestures, and the kind
-              of everyday bouquet that changes the whole room.
+              {hero.description}
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <button className="inline-flex items-center justify-center gap-2 rounded-full bg-[#2d2d2d] px-7 py-4 text-sm font-semibold text-white transition-transform hover:scale-[1.02] dark:bg-[#f2e8ec] dark:text-[#1d181d]">
-                Order Signature Bouquet
+                {hero.primaryCta}
                 <ArrowRight className="h-4 w-4" />
               </button>
               <a
                 href="#design-your-bouquet"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-[#e4d6db] bg-white/75 px-7 py-4 text-sm font-semibold text-[#3f3a3d] backdrop-blur transition-transform hover:scale-[1.02] dark:border-white/10 dark:bg-white/6 dark:text-[#f6edf0]"
               >
-                Design Your Own Bouquet
+                {hero.secondaryCta}
               </a>
             </div>
 
             <div className="mt-10 grid max-w-2xl gap-4 sm:grid-cols-3">
-              {[
-                ["Same-day wrapping", "Fresh stems styled daily"],
-                ["Wedding corners", "Ceremony and table florals"],
-                ["Handwritten notes", "Gift-ready finishing touch"]
-              ].map(([title, text]) => (
+              {hero.highlights.map(([title, text]) => (
                 <div key={title} className="rounded-[1.5rem] border border-white/70 bg-white/60 p-4 backdrop-blur dark:border-white/10 dark:bg-white/6">
                   <p className="text-base text-[#2d2d2d] dark:text-[#f6edf0]">{title}</p>
                   <p className="mt-2 text-sm leading-6 text-[#6a6468] dark:text-[#c9bbc3]">{text}</p>
@@ -113,7 +115,7 @@ export function HeroSection() {
             <div className="absolute right-0 top-6 w-[88%] overflow-hidden rounded-[2rem] border border-white/60 bg-white/40 p-2 shadow-[0_24px_80px_rgba(121,94,108,0.14)] backdrop-blur dark:border-white/10 dark:bg-white/6 sm:w-[72%] sm:rounded-[2.5rem] sm:p-3">
               <img
                 src="https://images.unsplash.com/photo-1588385494080-201c47faad95?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1200"
-                alt="Pink bouquet"
+                alt={hero.heroImageAlt}
                 className="h-[300px] w-full rounded-[1.6rem] object-cover sm:h-[420px] sm:rounded-[2rem]"
               />
               <div className="absolute inset-0 rounded-[1.6rem] bg-gradient-to-t from-[#21171d]/20 via-transparent to-white/10 sm:rounded-[2rem]" />
@@ -125,12 +127,12 @@ export function HeroSection() {
                   <HeartHandshake className="h-5 w-5" />
                 </div>
                 <div>
-                  <p className="text-sm uppercase tracking-[0.24em] text-[#95828b] dark:text-[#b79faa]">This week</p>
-                  <p className="text-lg text-[#2d2d2d] dark:text-[#f6edf0] sm:text-xl">Peonies, garden roses, sweet avalanche</p>
+                  <p className="text-sm uppercase tracking-[0.24em] text-[#95828b] dark:text-[#b79faa]">{hero.weeklyLabel}</p>
+                  <p className="text-lg text-[#2d2d2d] dark:text-[#f6edf0] sm:text-xl">{hero.weeklyTitle}</p>
                 </div>
               </div>
               <p className="mt-4 text-sm leading-6 text-[#6b6468] dark:text-[#cdbfc6]">
-                Styled in silk wrap with layered ribbons and natural greens for a softer silhouette.
+                {hero.weeklyDescription}
               </p>
             </div>
 
@@ -139,7 +141,7 @@ export function HeroSection() {
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 6.5, repeat: Infinity, ease: [0.4, 0, 0.2, 1] }}
             >
-              Freshly conditioned every morning
+              {hero.floatingNote}
             </motion.div>
           </motion.div>
         </div>

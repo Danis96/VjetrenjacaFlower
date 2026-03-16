@@ -1,21 +1,28 @@
 import { motion } from "motion/react";
 import { Clock, Facebook, Flower2, Instagram, Mail, MapPin, Phone } from "lucide-react";
+import type { AppContent } from "../content";
 
-export function Footer() {
+type FooterProps = {
+  content: AppContent;
+};
+
+export function Footer({ content }: FooterProps) {
+  const { footer, location } = content;
+
   return (
     <footer className="bg-[#2D2D2D] px-4 pb-8 pt-20 text-white md:px-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-14 rounded-[2rem] border border-white/10 bg-white/5 p-6 backdrop-blur dark:bg-white/4 sm:p-8">
           <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
             <div>
-              <p className="text-sm uppercase tracking-[0.28em] text-white/50 dark:text-[#bdaab3]">Floral invitations</p>
-              <h2 className="mt-3 text-4xl leading-none text-white sm:text-5xl">Let the next bouquet feel more personal.</h2>
+              <p className="text-sm uppercase tracking-[0.28em] text-white/50 dark:text-[#bdaab3]">{footer.eyebrow}</p>
+              <h2 className="mt-3 text-4xl leading-none text-white sm:text-5xl">{footer.title}</h2>
             </div>
             <a
               href="#design-your-bouquet"
               className="inline-flex items-center justify-center rounded-full bg-[#F7D9E3] px-6 py-3 text-sm font-semibold text-[#2D2D2D] dark:bg-[#f1e7ec]"
             >
-              Design Your Bouquet
+              {footer.cta}
             </a>
           </div>
         </div>
@@ -34,7 +41,7 @@ export function Footer() {
               </h3>
             </div>
             <p className="leading-relaxed text-white/70">
-              Premium flower shop in Sarajevo, creating beautiful moments with fresh flowers and softer styling.
+              {footer.description}
             </p>
             <div className="mt-6 flex gap-4">
               <motion.a
@@ -60,31 +67,31 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.75, delay: 0.06, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h4 className="mb-4 text-lg">Quick Links</h4>
+            <h4 className="mb-4 text-lg">{footer.quickLinksTitle}</h4>
             <ul className="space-y-3">
               <li>
                 <a href="#home" className="text-white/70 transition-colors hover:text-[#F7D9E3]">
-                  Home
+                  {footer.quickLinks[0]}
                 </a>
               </li>
               <li>
                 <a href="#collections" className="text-white/70 transition-colors hover:text-[#F7D9E3]">
-                  Collections
+                  {footer.quickLinks[1]}
                 </a>
               </li>
               <li>
                 <a href="#design-your-bouquet" className="text-white/70 transition-colors hover:text-[#F7D9E3]">
-                  Design Your Bouquet
+                  {footer.quickLinks[2]}
                 </a>
               </li>
               <li>
                 <a href="#visit" className="text-white/70 transition-colors hover:text-[#F7D9E3]">
-                  Visit Shop
+                  {footer.quickLinks[3]}
                 </a>
               </li>
               <li>
                 <a href="#visit" className="text-white/70 transition-colors hover:text-[#F7D9E3]">
-                  Contact
+                  {footer.quickLinks[4]}
                 </a>
               </li>
             </ul>
@@ -96,12 +103,12 @@ export function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.75, delay: 0.12, ease: [0.22, 1, 0.36, 1] }}
           >
-            <h4 className="mb-4 text-lg">Contact</h4>
+            <h4 className="mb-4 text-lg">{footer.contactTitle}</h4>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
                 <MapPin className="mt-0.5 h-5 w-5 flex-shrink-0 text-[#F7D9E3]" />
                 <span className="text-white/70">
-                  Sarajevo, Bosnia and Herzegovina
+                  {location.city}
                 </span>
               </li>
               <li className="flex items-start gap-3">
@@ -127,20 +134,20 @@ export function Footer() {
           >
             <h4 className="mb-4 flex items-center gap-2 text-lg">
               <Clock className="h-5 w-5 text-[#F7D9E3]" />
-              Opening Hours
+              {footer.openingHoursTitle}
             </h4>
             <ul className="space-y-2">
               <li className="flex justify-between text-white/70">
-                <span>Monday - Friday</span>
-                <span>8:00 - 20:00</span>
+                <span>{footer.hours[0]}</span>
+                <span>{footer.hourValues[0]}</span>
               </li>
               <li className="flex justify-between text-white/70">
-                <span>Saturday</span>
-                <span>9:00 - 18:00</span>
+                <span>{footer.hours[1]}</span>
+                <span>{footer.hourValues[1]}</span>
               </li>
               <li className="flex justify-between text-white/70">
-                <span>Sunday</span>
-                <span>10:00 - 16:00</span>
+                <span>{footer.hours[2]}</span>
+                <span>{footer.hourValues[2]}</span>
               </li>
             </ul>
           </motion.div>
@@ -149,14 +156,14 @@ export function Footer() {
         <div className="border-t border-white/10 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
             <p className="text-sm text-white/50">
-              © 2026 Cvjećara Vjetrenjača – Margareta. All rights reserved.
+              {footer.copyright}
             </p>
             <div className="flex flex-wrap justify-center gap-4 text-sm md:justify-start md:gap-6">
               <a href="#" className="text-white/50 transition-colors hover:text-[#F7D9E3]">
-                Privacy Policy
+                {footer.privacy}
               </a>
               <a href="#" className="text-white/50 transition-colors hover:text-[#F7D9E3]">
-                Terms of Service
+                {footer.terms}
               </a>
             </div>
           </div>
