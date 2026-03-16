@@ -1,4 +1,4 @@
-import { Cake, Gift, GraduationCap, Heart, Leaf, PackageOpen, Sparkles, Flower2 } from "lucide-react";
+import { Cake, Gift, GraduationCap, Heart, Leaf, Sparkles, Flower2 } from "lucide-react";
 
 export type Language = "en" | "bs";
 
@@ -100,6 +100,40 @@ export const content = {
       title: "Build a bouquet that feels made for one exact moment.",
       description:
         "Choose the colour mood, flower style, wrapping, and finishing touches. We bring it together by hand into an arrangement that feels complete.",
+      studioEyebrow: "Arrange the stems",
+      studioTitle: "Drag flowers into the bouquet",
+      dragHint: "Press and drag any flower card into the bouquet area, then reposition stems until the shape feels right.",
+      dragAction: "Drag to bouquet",
+      canvasLabel: "Bouquet canvas",
+      emptyHint: "Layer stems, rebalance the silhouette, and build your own composition.",
+      emptyState: "Your bouquet starts here. Drag flowers from the palette and drop them onto the canvas.",
+      stemCountLabel: "stems",
+      removeFlower: "Remove flower",
+      selectedFlowerLabel: "Selected stem",
+      selectedFlowerEmpty: "Select a flower in the bouquet to rotate or remove it.",
+      rotateLeft: "Rotate left",
+      rotateRight: "Rotate right",
+      rotateHint: "Fine-tune the angle until the bouquet feels balanced.",
+      finishEyebrow: "Choose the finish",
+      finishTitle: "Vase or wrapping",
+      finishHint: "Pick how the arrangement should be presented and preview it on the board.",
+      resetCta: "Reset bouquet",
+      orderSummaryEyebrow: "Custom bouquet summary",
+      orderSummaryTitle: "Order this arrangement",
+      basePriceLabel: "Base arrangement",
+      flowersPriceLabel: "Flowers added",
+      finishPriceLabel: "Finish selected",
+      totalPriceLabel: "Estimated total",
+      quickOrderCta: "Quick order this bouquet",
+      quickOrderHint: "Opens your email app with your bouquet summary ready to send.",
+      orderSubject: "Custom bouquet order",
+      orderIntro: "Hello, I would like to order this custom bouquet:",
+      orderBaseLine: "Base arrangement",
+      orderFlowersLine: "Flowers",
+      orderFinishLine: "Finish",
+      orderTotalLine: "Estimated total",
+      orderClosing: "Please contact me to confirm availability and delivery.",
+      basePriceValue: 5,
       steps: [
         {
           title: "Choose the mood",
@@ -116,11 +150,71 @@ export const content = {
       ],
       tags: ["Blush & cream", "Wild garden", "Luxury white", "Sunny pastel", "Ribbon note"],
       recipeEyebrow: "Suggested selection",
+      catalogEyebrow: "Flower catalog",
+      catalogTitle: "Choose up to four flowers first",
+      catalogHint: "Build your palette before arranging. Only selected flowers can be dragged onto the bouquet board.",
+      catalogSelectedLabel: "selected",
+      catalogMaxLabel: "Max 4 flowers",
+      selectFlowerCta: "Select flower",
+      selectedFlowerCta: "Selected",
+      draggableEyebrow: "Selected flowers",
+      draggableTitle: "Drag your chosen stems",
+      draggableHint: "Press and drag only from your selected flowers below.",
+      draggableEmpty: "Select up to four flowers from the catalog to unlock dragging.",
       options: [
-        { label: "Cloud Roses", note: "Romantic volume", icon: Flower2 },
-        { label: "Garden Tulips", note: "Fresh and airy", icon: Sparkles },
-        { label: "Olive Eucalyptus", note: "Soft green texture", icon: Leaf },
-        { label: "Keepsake Box", note: "Gift-ready finish", icon: PackageOpen }
+        {
+          label: "Garden Rose",
+          note: "Full romantic rose",
+          icon: Flower2,
+          price: 12,
+          image: "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Single garden rose"
+        },
+        {
+          label: "Parrot Tulip",
+          note: "Airy sculpted petals",
+          icon: Sparkles,
+          price: 9,
+          image: "https://images.unsplash.com/photo-1520763185298-1b434c919102?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Single parrot tulip"
+        },
+        {
+          label: "Silver Dollar Eucalyptus",
+          note: "Soft green branching stem",
+          icon: Leaf,
+          price: 7,
+          image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Single eucalyptus stem"
+        },
+        {
+          label: "Blush Peony",
+          note: "Rounded luxury bloom",
+          icon: Flower2,
+          price: 14,
+          image: "https://images.unsplash.com/photo-1468327768560-75b778cbb551?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Single blush peony"
+        },
+        {
+          label: "White Lisianthus",
+          note: "Soft layered white bloom",
+          icon: Sparkles,
+          price: 11,
+          image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Single white lisianthus"
+        },
+        {
+          label: "Ranunculus",
+          note: "Tight layered petals",
+          icon: Flower2,
+          price: 13,
+          image: "https://images.unsplash.com/photo-1469259943454-aa100abba749?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Single ranunculus flower"
+        }
+      ],
+      finishes: [
+        { id: "none", label: "No finish", note: "Only the bouquet silhouette", price: 0 },
+        { id: "paper", label: "Premium paper", note: "Soft wrapped bouquet", price: 6 },
+        { id: "vase", label: "Glass vase", note: "Display-ready arrangement", price: 14 }
       ],
       included: "Included",
       priceEyebrow: "From sketch to bouquet",
@@ -370,6 +464,40 @@ export const content = {
       title: "Sastavite buket koji je stvoren za jedan poseban trenutak.",
       description:
         "Odaberite raspoloženje boja, vrstu cvijeća, pakovanje i završne detalje. Mi sve povezujemo ručno u skladan i zaokružen aranžman.",
+      studioEyebrow: "Aranžirajte stabljike",
+      studioTitle: "Prevucite cvijeće u buket",
+      dragHint: "Pritisnite i prevucite bilo koji cvijet u prostor buketa, zatim pomjerajte stabljike dok kompozicija ne djeluje skladno.",
+      dragAction: "Prevuci u buket",
+      canvasLabel: "Platno buketa",
+      emptyHint: "Slažite stabljike, balansirajte siluetu i kreirajte vlastitu kompoziciju.",
+      emptyState: "Vaš buket počinje ovdje. Prevucite cvijeće iz palete i spustite ga na platno.",
+      stemCountLabel: "stabljika",
+      removeFlower: "Ukloni cvijet",
+      selectedFlowerLabel: "Odabrana stabljika",
+      selectedFlowerEmpty: "Odaberite cvijet u buketu da ga rotirate ili uklonite.",
+      rotateLeft: "Rotiraj lijevo",
+      rotateRight: "Rotiraj desno",
+      rotateHint: "Podesite ugao dok kompozicija ne djeluje skladno.",
+      finishEyebrow: "Odaberite završnicu",
+      finishTitle: "Vaza ili pakovanje",
+      finishHint: "Odaberite kako želite da aranžman bude predstavljen i pogledajte prikaz na platnu.",
+      resetCta: "Resetuj buket",
+      orderSummaryEyebrow: "Sažetak buketa po mjeri",
+      orderSummaryTitle: "Naručite ovaj aranžman",
+      basePriceLabel: "Osnova aranžmana",
+      flowersPriceLabel: "Dodano cvijeće",
+      finishPriceLabel: "Odabrana završnica",
+      totalPriceLabel: "Procijenjena cijena",
+      quickOrderCta: "Brza narudžba buketa",
+      quickOrderHint: "Otvara vaš email s već pripremljenim sažetkom buketa.",
+      orderSubject: "Narudžba buketa po mjeri",
+      orderIntro: "Pozdrav, želim naručiti ovaj buket po mjeri:",
+      orderBaseLine: "Osnova aranžmana",
+      orderFlowersLine: "Cvijeće",
+      orderFinishLine: "Završnica",
+      orderTotalLine: "Procijenjena cijena",
+      orderClosing: "Molim vas da me kontaktirate radi potvrde dostupnosti i dostave.",
+      basePriceValue: 5,
       steps: [
         {
           title: "Odaberite ugođaj",
@@ -386,11 +514,71 @@ export const content = {
       ],
       tags: ["Puderasto i krem", "Divlji vrt", "Luksuzna bijela", "Sunčani pastel", "Poruka s mašnom"],
       recipeEyebrow: "Predložena kombinacija",
+      catalogEyebrow: "Katalog cvijeća",
+      catalogTitle: "Prvo odaberite do četiri cvijeta",
+      catalogHint: "Prvo složite svoju paletu. Samo odabrano cvijeće se može prevući na platno buketa.",
+      catalogSelectedLabel: "odabrano",
+      catalogMaxLabel: "Maksimalno 4 cvijeta",
+      selectFlowerCta: "Odaberi cvijet",
+      selectedFlowerCta: "Odabrano",
+      draggableEyebrow: "Odabrano cvijeće",
+      draggableTitle: "Prevucite izabrane stabljike",
+      draggableHint: "Pritisnite i prevucite samo cvijeće koje ste prethodno odabrali.",
+      draggableEmpty: "Odaberite do četiri cvijeta iz kataloga da otključate prevlačenje.",
       options: [
-        { label: "Cloud Roses", note: "Romantičan volumen", icon: Flower2 },
-        { label: "Garden Tulips", note: "Svježe i prozračno", icon: Sparkles },
-        { label: "Olive Eucalyptus", note: "Nježna zelena tekstura", icon: Leaf },
-        { label: "Keepsake Box", note: "Spremno za poklon", icon: PackageOpen }
+        {
+          label: "Garden Rose",
+          note: "Puna romantična ruža",
+          icon: Flower2,
+          price: 12,
+          image: "https://images.unsplash.com/photo-1519378058457-4c29a0a2efac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Jedna garden ruža"
+        },
+        {
+          label: "Parrot Tulip",
+          note: "Prozračne skulpturalne latice",
+          icon: Sparkles,
+          price: 9,
+          image: "https://images.unsplash.com/photo-1520763185298-1b434c919102?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Jedan papagaj tulipan"
+        },
+        {
+          label: "Silver Dollar Eucalyptus",
+          note: "Nježna zelena razgranata stabljika",
+          icon: Leaf,
+          price: 7,
+          image: "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Jedna stabljika eukaliptusa"
+        },
+        {
+          label: "Blush Peony",
+          note: "Raskošan puni cvat",
+          icon: Flower2,
+          price: 14,
+          image: "https://images.unsplash.com/photo-1468327768560-75b778cbb551?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Jedan rumeni božur"
+        },
+        {
+          label: "White Lisianthus",
+          note: "Nježan slojeviti bijeli cvijet",
+          icon: Sparkles,
+          price: 11,
+          image: "https://images.unsplash.com/photo-1490750967868-88aa4486c946?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Jedan bijeli lizijantus"
+        },
+        {
+          label: "Ranunculus",
+          note: "Guste slojevite latice",
+          icon: Flower2,
+          price: 13,
+          image: "https://images.unsplash.com/photo-1469259943454-aa100abba749?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&q=80&w=1080",
+          imageAlt: "Jedan ranunkulus"
+        }
+      ],
+      finishes: [
+        { id: "none", label: "Bez završnice", note: "Samo silueta buketa", price: 0 },
+        { id: "paper", label: "Premium papir", note: "Nježno umotan buket", price: 6 },
+        { id: "vase", label: "Staklena vaza", note: "Aranžman spreman za izlaganje", price: 14 }
       ],
       included: "Uključeno",
       priceEyebrow: "Od ideje do buketa",
